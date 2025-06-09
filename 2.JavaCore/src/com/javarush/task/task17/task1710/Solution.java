@@ -20,18 +20,22 @@ public class Solution {
     }
 
     public static void main(String[] args) throws ParseException {
-        SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-         if (args[0].equals("-c")) {
-            Person person = null;
-            if (args[2].equalsIgnoreCase("м")) {
-                person = Person.createMale(args[1],input.parse(args[3]));
-            } else if (args[2].equalsIgnoreCase("ж")) {
-                person = Person.createFemale(args[1], input.parse(args[3]));
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        Person male = null;
+        if (args[0].equals("-c")) {
+            if (args[2].equalsIgnoreCase("М")) {
+                male = Person.createMale(args[1], DateFormat.parse(args[3]));
+                allPeople.add(male);
+            } else if (args[2].equalsIgnoreCase("Ж")) {
+                male = Person.createFemale(args[1], DateFormat.parse(args[3]));
+                allPeople.add(male);
             }
-            allPeople.add(person);
-            System.out.println(allPeople.indexOf(person));
+
+
+            System.out.println(allPeople.indexOf(male));
         }
-
-
+        if (args[0].equals("-r")){
+            
+        }
     }
 }
