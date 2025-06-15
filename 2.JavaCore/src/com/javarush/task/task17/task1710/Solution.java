@@ -20,22 +20,56 @@ public class Solution {
     }
 
     public static void main(String[] args) throws ParseException {
-        SimpleDateFormat DateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        Person male = null;
+        SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+        Person person = null;
         if (args[0].equals("-c")) {
             if (args[2].equalsIgnoreCase("М")) {
-                male = Person.createMale(args[1], DateFormat.parse(args[3]));
-                allPeople.add(male);
+                person = Person.createMale(args[1], inputFormat.parse(args[3]));
             } else if (args[2].equalsIgnoreCase("Ж")) {
-                male = Person.createFemale(args[1], DateFormat.parse(args[3]));
-                allPeople.add(male);
+                person = Person.createFemale(args[1], inputFormat.parse(args[3]));
+            }
+            allPeople.add(person);
+            System.out.println(allPeople.indexOf(person));
+        } else if (args[0].equals("-r")) {
+            int id = Integer.parseInt(args[1]);
+            if (id >= 0 && id < allPeople.size()) {
+                person = allPeople.get(id);
+                String name = person.getName();
+                Sex sex = person.getSex();
+                Date birthDate = person.getBirthDate();
+                String stringSex = null;
+                if (sex.equals(Sex.MALE)) {
+                    stringSex = "м";
+                } else if (sex.equals(Sex.FEMALE)) {
+                    stringSex = "ж";
+                }
+                System.out.println(name + "-" + stringSex + " " + outputFormat.format(birthDate));
             }
 
 
-            System.out.println(allPeople.indexOf(male));
-        }
-        if (args[0].equals("-r")){
-            
+        } else if (args[0].equals("-u")) {
+            int id = Integer.parseInt(args[1]);
+            if (id >= 0 && id < allPeople.size()) {
+                person = allPeople.get(id);
+                person.setName(args[2]);
+                if (args[3].equalsIgnoreCase("М")) {
+                    person.setSex(Sex.MALE);
+                } else if (args[3].equalsIgnoreCase("Ж")) {
+                    person.setSex(Sex.FEMALE);
+                }
+                person.setBirthDate(inputFormat.parse(args[4]));
+            }
+        } else if (args[0].equals("-d")) {
+            int id = Integer.parseInt(args[1]);
+            if (id >= 0 && id < allPeople.size()) {
+                person = allPeople.get(id);
+                person.setName(null);
+                person.setSex(null);
+                person.setBirthDate(null);
+            }
         }
     }
 }
+// прочитать про тип данных enum
+//
