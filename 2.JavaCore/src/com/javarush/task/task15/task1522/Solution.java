@@ -10,7 +10,6 @@ import java.io.InputStreamReader;
 
 public class Solution {
     public static void main(String[] args) {
-
     }
 
     public static Planet thePlanet;
@@ -18,20 +17,18 @@ public class Solution {
     static {
         readKeyFromConsoleAndInitPlanet();
     }
-    //add static block here - добавьте статический блок тут
 
     public static void readKeyFromConsoleAndInitPlanet() {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
             String line = bufferedReader.readLine();
-            if (line.equals(Planet.SUN)) {
-                thePlanet = Sun.getInstance();
+            if (line.equals(Planet.EARTH)) {
+                thePlanet = Earth.getInstance();
             } else if (line.equals(Planet.MOON)) {
                 thePlanet = Moon.getInstance();
-            } else if (line.equals(Planet.EARTH)) {
-                thePlanet = Earth.getInstance();
+            } else if (line.equals(Planet.SUN)) {
+                thePlanet = Sun.getInstance();
             }else
                 thePlanet = null;
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

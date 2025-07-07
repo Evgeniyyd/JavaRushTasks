@@ -1,7 +1,7 @@
 package com.javarush.task.task15.task1522;
 
 public class Sun implements Planet {
-    private static Sun instance;
+    private static Sun instance = null;
 
     private Sun() {
     }
@@ -10,6 +10,6 @@ public class Sun implements Planet {
         if (instance == null) {
             instance = new Sun();
         }
-        return instance;
+       return instance;
     }
 }
