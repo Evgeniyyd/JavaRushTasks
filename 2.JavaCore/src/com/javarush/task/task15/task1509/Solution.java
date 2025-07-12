@@ -16,8 +16,8 @@ public class Solution {
     public static void printName(Human man) {
 
 
-    }
 
+    }
     public static class Human {
 
     }
