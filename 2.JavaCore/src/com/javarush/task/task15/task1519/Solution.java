@@ -11,26 +11,32 @@ import java.io.InputStreamReader;
 public class Solution {
     public static void main(String[] args) throws IOException {
        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String line = bufferedReader.readLine();
         while (true){
+            String line = bufferedReader.readLine();
             if (line.equals("exit")){
                 break;
             }
             try {
-                if (line.contains(".")){
-                    print(Double.parseDouble(line));
-                }
-                int parseInt = Integer.parseInt(line);
-                if (parseInt > 0 && parseInt <128){
-                    print((short) parseInt);
-                }else {
-                    print(parseInt);
+                if (line.contains(".")) {
+                    double parseDouble = Double.parseDouble(line);
+                    print(parseDouble);
+                } else {
+                    int parseInt = Integer.parseInt(line);
+                    if (parseInt > 0 && parseInt < 128) {
+                        short parse = Short.parseShort(line);
+                        print(parse);
+                    } else {
+                        print(parseInt);
+                    }
+
                 }
             } catch (Exception e) {
                 print(line);
             }
-            break;
-        }
+
+
+
+            }
 
     }
 
