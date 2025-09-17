@@ -18,15 +18,13 @@ public class Solution {
     public static class Cat extends Thread {
         protected Kitten kitten1;
         protected Kitten kitten2;
-        protected  Kitten kitten3;
-        protected  Kitten kitten4;
+
 
         public Cat(String name) {
             super(name);
             kitten1 = new Kitten("Котенок 1, мама - " + getName());
             kitten2 = new Kitten("Котенок 2, мама - " + getName());
-            kitten3 = new Kitten("Котёнок 3, мама - " + getName());
-            kitten4 = new Kitten("Котёнок 4, мама - " + getName());
+
             start();
         }
 
@@ -41,13 +39,9 @@ public class Solution {
 
         private void initAllKittens() throws InterruptedException {
             kitten1.start();
-            kitten2.start();
-            kitten3.start();
-            kitten4.start();
             kitten1.join();
-            kitten4.join();
+            kitten2.start();
             kitten2.join();
-            kitten3.join();
         }
     }
 
