@@ -9,27 +9,29 @@ import java.io.InputStreamReader;
 */
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)throws IOException{
 
     }
 
     static {
-        reset();
+        try {
+            reset();
+        } catch (IOException ignore) {
+
+        }
     }
 
     public static CanFly result;
 
-    public static void reset() {
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));) {
-            String string = bufferedReader.readLine();
-            if (string.contains("helicopter")) {
-                result = new Helicopter();
-            } else if (string.contains("plane")) {
-                int read = bufferedReader.read();
-                result = new Plane(read);
-            }
-        } catch (Exception ignore) {
-
+    public static void reset() throws IOException{
+      BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String string = bufferedReader.readLine();
+        if (string.contains("helicopter")){
+            result = new Helicopter();
+        }
+        if (string.contains("plane")){
+            bufferedReader.read();
+            result = new Plane(43);
         }
     }
 }
