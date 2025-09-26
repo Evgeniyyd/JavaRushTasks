@@ -46,10 +46,10 @@ public class Solution {
         }
         @Override
         public void run() {
-            Date dete1 = startPlaying();
+            Date deteOne = startPlaying();
             sleepNSeconds(1);
-            Date date2 = stopPlaying();
-            System.out.println("Playing " + (dete1.getTime() - date2.getTime()) +" "+ "ms");
+            Date dateTwo = stopPlaying();
+            System.out.println("Playing " + (dateTwo.getTime() - deteOne.getTime()) +" "+ "ms");
         }
         }
     }
