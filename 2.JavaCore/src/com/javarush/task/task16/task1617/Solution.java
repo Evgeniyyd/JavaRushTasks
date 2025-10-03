@@ -4,8 +4,6 @@ package com.javarush.task.task16.task1617;
 Отсчет на гонках
 */
 
-import static java.lang.System.out;
-
 public class Solution {
     public static volatile int numSeconds = 4;
 
@@ -22,19 +20,23 @@ public class Solution {
 
         public void run() {
             try {
-                while (numSeconds >= 0){
-                    if (numSeconds == 0){
-                       out.print("Марш!");
-                    }else {
-                        out.print(numSeconds + " ");
-                        Thread.sleep(1000);
-                    }
+                while (numSeconds > -1) {
+                    System.out.print(numSeconds + " ");
+                    Thread.sleep(1000);
                     numSeconds--;
+                    if (numSeconds == 0) {
+                        System.out.print("Марш!");
+                        break;
+                    }
                 }
+            } catch (InterruptedException e) {
+                System.out.println("Прервано!");
 
-           } catch (InterruptedException e) {
-                out.println("Прервано!");
             }
         }
     }
 }
+
+
+
+
