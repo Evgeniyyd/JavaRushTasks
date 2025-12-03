@@ -1,0 +1,19 @@
+package ru.javarush.java.core.level06.task15;
+
+import java.text.DecimalFormat;
+
+public class Solution {
+    public static void main(String[] args) {
+        // Объявляем переменную для квартального дохода и присваиваем ей значение
+double quarterlyRevenue =125.789;
+  DecimalFormat df = new DecimalFormat("0.00");
+        String format = df.format(quarterlyRevenue);
+        System.out.println(format);
+        // Создаем форматер, который всегда выводит ровно две цифры после запятой
+        // Шаблон "0.00" гарантирует наличие хотя бы одной цифры до запятой и двух после
+
+
+        // Форматируем число и выводим результат на экран
+
+    }
+}
