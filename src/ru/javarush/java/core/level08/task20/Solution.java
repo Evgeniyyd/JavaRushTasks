@@ -12,8 +12,6 @@ public class Solution {
         newPupil.displayStudentProfile();
 
         // Выведем аккуратный профиль ученика
-
-       newPupil.studentAge =20;
         // Попытка прямого изменения приватного поля — это нарушение инкапсуляции.
 
     }

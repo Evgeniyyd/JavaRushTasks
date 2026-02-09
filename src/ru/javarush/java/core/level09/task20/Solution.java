@@ -8,7 +8,7 @@ StringBuilder builder = new StringBuilder("Я люблю Java!");
         int indexOf = delete.indexOf("J");
         int indexOf1 = delete.indexOf("!");
 
-      //  StringBuilder stringBuilder = delete.replace(indexOf, indexOf1,"программирование");
+      StringBuilder stringBuilder = delete.replace(indexOf, indexOf1,"программирование");
         // Удаление слова "люблю" с сохранением пробелов
 
         // Замена слова "Java" на "программирование"
