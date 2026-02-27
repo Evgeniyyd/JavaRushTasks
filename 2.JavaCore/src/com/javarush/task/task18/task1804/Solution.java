@@ -25,9 +25,9 @@ public class Solution {
                     map.put(read, map.get(read) + 1);
                 }
             }
-            Integer min = Collections.min(map.values());
+            Integer minValue = Collections.min(map.values());
             for (Map.Entry<Integer, Integer> pair : map.entrySet()) {
-                if (min.equals(pair.getValue())) {
+                if (minValue.equals(pair.getValue())) {
                     System.out.print(pair.getKey()+" ");
                 }
             }
