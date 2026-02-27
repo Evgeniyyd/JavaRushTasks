@@ -1,39 +1,36 @@
 package com.javarush.task.task18.task1804;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.*;
 
-/* 
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+/*
 Самые редкие байты
 */
-
 public class Solution {
     public static void main(String[] args) throws Exception {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-             FileInputStream inputStream = new FileInputStream(reader.readLine())) {
+             FileInputStream fileInput = new FileInputStream(reader.readLine())) {
             Map<Integer, Integer> map = new HashMap<>();
-            while (inputStream.read() != 0) {
-                int read = inputStream.read();
+            while (fileInput.read() != -1) {
+                int read = fileInput.read();
                 if (!map.containsKey(read)) {
                     map.put(read, 1);
                 } else {
-                    Integer value = map.get(read);
-                    map.put(read, value + 1);
+                    map.put(read, map.get(read) + 1);
                 }
             }
-            Collection<Integer> minByte = map.values();
-            Integer min = Collections.min(minByte);
-            Set<Map.Entry<Integer, Integer>> set = map.entrySet();
-            for (Map.Entry<Integer,Integer> pair: set){
-                if (pair.getValue().equals(min)){
-                    System.out.print(pair.getKey()+ " ");
-
+            Integer min = Collections.min(map.values());
+            for (Map.Entry<Integer, Integer> pair : map.entrySet()) {
+                if (min.equals(pair.getValue())) {
+                    System.out.print(pair.getKey()+" ");
                 }
             }
-
         }
     }
 }
