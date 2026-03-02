@@ -52,19 +52,19 @@ public class Solution {
 
         @Override
         public void run() {
-            boolean str = OnlineGame.isWinnerFound;
             try {
-                Thread.sleep(1000 / rating);
-                System.out.println(getName() + ": " + OnlineGame.steps);
-                if (!str) {
-                    OnlineGame.isWinnerFound = true;
-                    System.out.println(getName() + ":победитель!");
+                for (String step : OnlineGame.steps) {
+                    Thread.sleep(1000 / rating);
+                    System.out.println(getName() + ":" + step);
+                    String lastStep = OnlineGame.steps.get(OnlineGame.steps.size() - 1);
+                    if (step.equals(lastStep) && !OnlineGame.isWinnerFound) {
+                        OnlineGame.isWinnerFound = true;
+                        System.out.println(getName() + ":победитель!");
+                    }
                 }
-
-        } catch (InterruptedException ignore) {
-                System.out.println(getName() + ":проиграл");
+            } catch (Exception e) {
+                System.out.println(getName() + ":проиграл!");
             }
-            //Add your code here - добавь код тут
         }
     }
 }
