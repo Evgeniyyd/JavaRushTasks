@@ -39,7 +39,7 @@ public class Solution {
         }
 
         public void printResult() {
-            System.out.println( line1+ " "+line2+" "+line3);
+            System.out.println(line1+ " "+line2+" "+line3);
 
         }
     }
