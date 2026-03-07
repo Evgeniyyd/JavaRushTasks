@@ -34,7 +34,7 @@ public class Solution {
         }
     }
 
-    public static class NoteThread  extends Thread {
+    public static class NoteThread extends Thread {
         int index = 4;
         int count = 0;
 
@@ -45,9 +45,10 @@ public class Solution {
                     Note.addNote(getName() + "-Note" + index);
                     Thread.sleep(1);
                     Note.removeNote(getName());
-               count++;
+
+                    count++;
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    throw new ArrayIndexOutOfBoundsException();
                 }
             }
         }
