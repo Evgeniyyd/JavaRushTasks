@@ -2,7 +2,7 @@ package com.javarush.task.task16.task1630;
 
 import java.io.*;
 
-/* 
+/*
 Последовательный вывод файлов
 */
 
@@ -10,12 +10,13 @@ public class Solution {
     public static String firstFileName;
     public static String secondFileName;
 
-
 //напишите тут ваш код
 
     public static void main(String[] args) throws InterruptedException {
         systemOutPrintln(firstFileName);
+        Thread.sleep(400);
         systemOutPrintln(secondFileName);
+
     }
 
     public static void systemOutPrintln(String fileName) throws InterruptedException {
@@ -31,6 +32,7 @@ public class Solution {
         void setFileName(String fullFileName);
 
         String getFileContent() throws InterruptedException;
+
 
         void join() throws InterruptedException;
 
@@ -55,7 +57,7 @@ public class Solution {
             firstFileName = fullFileName;
         }
 
-        public String getFileContent() {
+        public String getFileContent() throws InterruptedException {
             StringBuilder builder = new StringBuilder();
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(firstFileName));
@@ -64,15 +66,17 @@ public class Solution {
                     line = reader.readLine();
                     builder.append(line).append(" ");
                 }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new InterruptedException();
             }
             return builder.toString();
         }
 
         @Override
         public void start() {
-
+            if (isAlive()) {
+                System.out.println(" ");
+            }
         }
 
         @Override
@@ -84,14 +88,12 @@ public class Solution {
                     line = reader.readLine();
                     if (!isAlive()) {
                         getFileContent();
-                        System.out.println(line + " ");
+                        System.out.print(line + " ");
                     }
                 }
-                getFileContent();
-            } catch (IOException ignore) {
+            } catch (IOException | InterruptedException i) {
                 throw new RuntimeException();
             }
         }
     }
-    //напишите тут ваш код
 }
