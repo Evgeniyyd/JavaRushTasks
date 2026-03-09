@@ -36,7 +36,7 @@ public class Solution {
 
     public static class NoteThread extends Thread {
         int index = 4;
-        int count = 0;
+      volatile int count;
 
         @Override
         public void run() {
