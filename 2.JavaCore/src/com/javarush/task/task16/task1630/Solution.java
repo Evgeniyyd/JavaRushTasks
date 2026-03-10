@@ -5,12 +5,20 @@ import java.io.*;
 /*
 Последовательный вывод файлов
 */
-
 public class Solution {
     public static String firstFileName;
     public static String secondFileName;
 
-//напишите тут ваш код
+    static {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            firstFileName = reader.readLine();
+            secondFileName = reader.readLine();
+            reader.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void main(String[] args) throws InterruptedException {
         systemOutPrintln(firstFileName);
@@ -39,59 +47,30 @@ public class Solution {
         void start();
     }
 
-    static {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            firstFileName = reader.readLine();
-            secondFileName = reader.readLine();
-            reader.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static class ReadFileThread extends Thread implements ReadFileInterface {
-
+        private String fullFileName;
+        private StringBuilder builder = new StringBuilder();
 
         public void setFileName(String fullFileName) {
-            firstFileName = fullFileName;
+            this.fullFileName = fullFileName;
+
         }
 
-        public String getFileContent() throws InterruptedException {
-            StringBuilder builder = new StringBuilder();
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(firstFileName));
-                String line;
-                while (reader.ready()) {
-                    line = reader.readLine();
-                    builder.append(line).append(" ");
-                }
-            } catch (IOException e) {
-                throw new InterruptedException();
-            }
+        public String getFileContent() {
             return builder.toString();
-        }
 
-        @Override
-        public void start() {
-            if (isAlive()) {
-                System.out.println(" ");
-            }
         }
 
         @Override
         public void run() {
             String line;
             try {
-                BufferedReader reader = new BufferedReader(new FileReader(firstFileName));
+                BufferedReader reader = new BufferedReader(new FileReader(fullFileName));
                 while (reader.ready()) {
                     line = reader.readLine();
-                    if (!isAlive()) {
-                        getFileContent();
-                        System.out.print(line + " ");
-                    }
+                    builder.append(line).append(" ");
                 }
-            } catch (IOException | InterruptedException i) {
+            } catch (IOException i) {
                 throw new RuntimeException();
             }
         }
