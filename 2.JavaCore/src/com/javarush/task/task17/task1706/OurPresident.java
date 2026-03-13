@@ -10,11 +10,10 @@ public class OurPresident {
         return president;
     }
 
-    static {
+    static  {
         synchronized (OurPresident.class) {
-                president = getOurPresident();
+                president = new OurPresident();
             }
-
         }
     }
 
