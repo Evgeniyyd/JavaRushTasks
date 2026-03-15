@@ -19,15 +19,14 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        while (true) {
-            for (int i = 0; i < allPeople.size(); i++) {
-                if (args[0] == "-c") {
-                    int index = allPeople.indexOf(args[0]);
-
-                }
-
+        if (args[0].equals("-c")) {
+            for (int i = 1; i < args.length; i+=3) {
+                String name = args[i];
+               String sex = args[i+1];
+               String bd = args[i+2];
             }
+
+
         }
-        //start here - начни тут
     }
 }
