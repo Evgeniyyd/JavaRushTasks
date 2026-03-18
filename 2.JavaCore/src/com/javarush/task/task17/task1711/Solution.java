@@ -36,7 +36,7 @@ public class Solution {
         } else if (args[0].equals("-u")) {
             for (int i = 1; i < args.length; i+=4) {
                 String id = args[i];
-                String name = args[i=1];
+                String name = args[i+1];
                 String sex = args[i+2];
                 Date date = dateFormat.parse(args[i + 3]);
                 int index = Integer.parseInt(id);
@@ -48,12 +48,25 @@ public class Solution {
                        person = Person.createMale(name, date);
                     }
                     allPeople.set(index,person);
-
-
-
                 }
             }
+        } else if (args[0].equals("-d")) {
+            for (int i = 0; i < args.length; i+=4) {
+                String id = args[i];
+                String sex = args[i+1];
+                Date birthDate = person.getBirthDate();
+                String name = person.getName();
+                int index = Integer.parseInt(id);
+                if (sex.equalsIgnoreCase("M")){
+                   person.createMale(name,birthDate);
 
+                } else if (sex.equalsIgnoreCase("Ж")) {
+                    person.createFemale(name, birthDate);
+                }
+                allPeople.set(index, null);
+
+            }
+            
         }
 
     }
