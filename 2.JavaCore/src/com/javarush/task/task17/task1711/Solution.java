@@ -17,7 +17,9 @@ public class Solution {
     }
 
     public static void main(String[] args) throws ParseException {
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
         Person person = null;
         if (args[0].equals("-c")) {
             for (int i = 1; i < args.length; i += 3) {
@@ -34,40 +36,58 @@ public class Solution {
                 System.out.println(index);
             }
         } else if (args[0].equals("-u")) {
-            for (int i = 1; i < args.length; i+=4) {
+            for (int i = 1; i < args.length; i += 4) {
                 String id = args[i];
-                String name = args[i+1];
-                String sex = args[i+2];
+                String name = args[i + 1];
+                String sex = args[i + 2];
                 Date date = dateFormat.parse(args[i + 3]);
                 int index = Integer.parseInt(id);
-                if (index >=0 && index < allPeople.size()){
-                    if (sex.equalsIgnoreCase("Ж")){
-                       person = Person.createFemale(name, date);
+                if (index >= 0 && index < allPeople.size()) {
+                    if (sex.equalsIgnoreCase("Ж")) {
+                        person = Person.createFemale(name, date);
 
                     } else if (sex.equalsIgnoreCase("M")) {
-                       person = Person.createMale(name, date);
+                        person = Person.createMale(name, date);
                     }
-                    allPeople.set(index,person);
+                    allPeople.set(index, person);
+                    System.out.println(person.getName()+" "+ person.getSex()+" "+person.getBirthDate());
                 }
+
             }
         } else if (args[0].equals("-d")) {
-            for (int i = 0; i < args.length; i+=4) {
+            for (int i = 1; i < args.length; i++) {
                 String id = args[i];
-                String sex = args[i+1];
-                Date birthDate = person.getBirthDate();
-                String name = person.getName();
                 int index = Integer.parseInt(id);
-                if (sex.equalsIgnoreCase("M")){
-                   person.createMale(name,birthDate);
+                if (index >= 0 && index < allPeople.size()) {
+                    person = allPeople.get(index);
+                    person.setName(null);
+                    person.setSex(null);
+                    person.setBirthDate(null);
 
-                } else if (sex.equalsIgnoreCase("Ж")) {
-                    person.createFemale(name, birthDate);
+
                 }
-                allPeople.set(index, null);
-
             }
-            
-        }
 
+        } else if (args[0].equals("-i")) {
+            for (int i = 1; i < args.length; i++) {
+                String id = args[i];
+                int index = Integer.parseInt(id);
+                if (index >= 0 && index < allPeople.size()) {
+                    person = allPeople.get(index);
+                    String name = person.getName();
+                    Sex sex = person.getSex();
+                    Date birthDate = person.getBirthDate();
+                    String formatted = format.format(birthDate);
+                    String sexValue = "";
+                    if (sex.equals(Sex.MALE)) {
+                        sexValue = "м";
+                    } else {
+                        sexValue = "ж";
+
+                    }
+                    System.out.println(name + " " + sexValue + " " + formatted);
+                }
+            }
+        }
     }
 }
