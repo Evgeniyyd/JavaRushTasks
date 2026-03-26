@@ -2,10 +2,7 @@ package com.javarush.task.task17.task1711;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 /* 
 CRUD 2
@@ -19,28 +16,27 @@ public class Solution {
         allPeople.add(Person.createMale("Петров Петр", new Date()));  //сегодня родился id=1
     }
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, NullPointerException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        SimpleDateFormat format = new SimpleDateFormat("dd/MMM/yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
         Person person = null;
         switch (args[0]) {
             case "-c":
                 synchronized (allPeople) {
                     for (int i = 1; i < args.length; i += 3) {
-                        int id = allPeople.indexOf(person);
-                        if (id >= 0 && id < allPeople.size()) {
-                            String name = args[i];
-                            String sex = args[i + 1];
-                            String bd = args[i + 2];
-                            Date parse = dateFormat.parse(bd);
-                            if (sex.equalsIgnoreCase("М")) {
-                                person = Person.createMale(name, parse);
-                            } else if (sex.equalsIgnoreCase("Ж")) {
-                                person = Person.createFemale(name, parse);
-                            }
-                            allPeople.add(person);
+                        String name = args[i];
+                        String sex = args[i + 1];
+                        String bd = args[i + 2];
+                        Date parse = dateFormat.parse(bd);
+                        if (sex.equalsIgnoreCase("М")) {
+                            person = Person.createMale(name, parse);
+                        } else if (sex.equalsIgnoreCase("Ж")) {
+                            person = Person.createFemale(name, parse);
                         }
-                        System.out.println(id);
+                        allPeople.add(person);
+                        int indexOf = allPeople.indexOf(person);
+                        System.out.println(indexOf);
+
                     }
                     break;
                 }
@@ -48,16 +44,18 @@ public class Solution {
                 synchronized (allPeople) {
                     for (int i = 1; i < args.length; i += 4) {
                         int id = Integer.parseInt(args[i]);
-                        String name = args[i + 1];
-                        String sex = args[i + 2];
-                        String bd = args[i + 3];
-                        Date parse = dateFormat.parse(bd);
-                        if (sex.equalsIgnoreCase("М")) {
-                            person = Person.createMale(name, parse);
-                        } else if (sex.equalsIgnoreCase("Ж")) {
-                            person = Person.createFemale(name, parse);
+                        if (id >= 0 && id < allPeople.size()) {
+                            String name = args[i + 1];
+                            String sex = args[i + 2];
+                            String bd = args[i + 3];
+                            Date parse = dateFormat.parse(bd);
+                            if (sex.equalsIgnoreCase("М")) {
+                                person = Person.createMale(name, parse);
+                            } else if (sex.equalsIgnoreCase("Ж")) {
+                                person = Person.createFemale(name, parse);
+                            }
+                            allPeople.set(id, person);
                         }
-                        allPeople.set(id, person);
                     }
                 }
                 break;
@@ -65,40 +63,36 @@ public class Solution {
                 synchronized (allPeople) {
                     for (int i = 1; i < args.length; i++) {
                         int id = Integer.parseInt(args[i]);
-                        int indexOf = allPeople.indexOf(id);
-                        if (indexOf >= 0 && indexOf < allPeople.size()) {
+                        if (id >= 0 && id < allPeople.size()) {
+                            person = allPeople.get(id);
                             person.setName(null);
                             person.setSex(null);
                             person.setBirthDate(null);
-                            allPeople.set(indexOf, person);
                         }
                     }
                 }
                 break;
             case "-i":
                 synchronized (allPeople) {
-                    String sex = "";
+                    String stringSex = "";
                     for (int i = 1; i < args.length; i++) {
                         int id = Integer.parseInt(args[i]);
-                        int indexOf = allPeople.indexOf(person);
                         if (id >= 0 && id < allPeople.size()) {
+                            person = allPeople.get(id);
                             String name = person.getName();
-                            Sex sex1 = person.getSex();
+                            Sex sex = person.getSex();
                             Date birthDate = person.getBirthDate();
-                            String format1 = format.format(birthDate);
+                            String stringFormat = format.format(birthDate);
                             if (sex.equals(Sex.MALE)) {
-                                sex = "M";
+                                stringSex = "M";
                             } else {
-                                sex = "Ж";
+                                stringSex = "Ж";
                             }
-                            allPeople.add(indexOf, person);
-                            System.out.println(name + " " + sex1 + " " + format1);
+                            System.out.println(name + " " + stringSex + " " + stringFormat);
                         }
                     }
                 }
                 break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + args[0]);
         }
     }
 }
