@@ -20,14 +20,13 @@ public class Solution {
 
         @Override
         public void run() {
-            synchronized (Person.class) {
+            synchronized (Iron.class) {
                 Iron iron = takeIron();
                 Clothes clothes = takeClothes();
                 iron(iron, clothes);
                 returnIron();
             }
         }
-
         protected Iron takeIron() {
             System.out.println("Taking the iron");
             return new Iron();
@@ -42,7 +41,7 @@ public class Solution {
             return new Clothes("T-shirt");
         }
 
-        protected void iron(Iron iron, Clothes clothes) {
+        protected  void iron(Iron iron, Clothes clothes) {
             System.out.println(getName() + " is ironing a " + clothes.name);
         }
     }
