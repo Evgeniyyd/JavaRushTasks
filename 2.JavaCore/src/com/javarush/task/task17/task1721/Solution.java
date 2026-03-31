@@ -1,7 +1,9 @@
 package com.javarush.task.task17.task1721;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +16,30 @@ public class Solution {
     public static List<String> allLines = new ArrayList<String>();
     public static List<String> forRemoveLines = new ArrayList<String>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader readerOne = new BufferedReader(new FileReader(console.readLine()));
+        BufferedReader readerTwo = new BufferedReader(new FileReader(console.readLine()));
+        while (readerOne.ready()) {
+            String line = readerOne.readLine();
+            allLines.add(line);
+        }
+        while (readerTwo.ready()) {
+            String string = readerTwo.readLine();
+            forRemoveLines.add(string);
+
+        }
+         Solution solution = new Solution();
+        solution.joinData();
     }
 
-    public void joinData() throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        FileReader fileReader = new FileReader(reader.readLine());
-        StringBuilder builder = new StringBuilder();
-        while (fileReader.ready()) {
-            int read = fileReader.read();
-            StringBuilder append = builder.append((char) read);
+    public void joinData() throws CorruptedDataException {
+        List<String> copy = new ArrayList<>(allLines);
+        if (copy.containsAll(forRemoveLines)) {
+            allLines.removeAll(forRemoveLines);
+        }else {
+            allLines.clear();
+            throw  new CorruptedDataException();
         }
     }
 }
