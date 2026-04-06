@@ -11,17 +11,13 @@ public class Solution {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try (FileInputStream inputStream = new FileInputStream(reader.readLine())) {
             int count = 0;
-            char ascii_symbola =',';
-            while (inputStream.read() != 0) {
-               int read = inputStream.read();
-                if (ascii_symbola == 44){
-
+            while (inputStream.available() != 0) {
+                int read = inputStream.read();
+                if (read == 44) {
+                    count++;
                 }
-                System.out.println(count);
-
-
             }
-
+            System.out.println(count);
         }
     }
 }
