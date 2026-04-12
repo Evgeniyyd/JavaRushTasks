@@ -11,19 +11,6 @@ import java.io.InputStreamReader;
 public class QuestionFileOutputStream implements AmigoOutputStream {
     private AmigoOutputStream comp;
 
-//    public static void main(String[] args) throws IOException {
-//        try {
-//
-//            QuestionFileOutputStream questionFileOutputStream = new QuestionFileOutputStream();
-//            questionFileOutputStream.close();
-//        } catch (IOException e) {
-//            throw new RuntimeException("Вы велли букву Д или д");
-//        }
-//
-//    }
-
-
-
     public QuestionFileOutputStream(AmigoOutputStream comp) {
         this.comp = comp;
     }
@@ -54,13 +41,10 @@ public class QuestionFileOutputStream implements AmigoOutputStream {
     public void close() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Вы действительно хотите закрыть поток? Д/Н");
-        while (true) {
             String line = reader.readLine();
-            if (!line.equals("Д")) {
-            } else {
-                reader.close();
+            if (line.equals("Д")) {
+           comp.close();
             }
-        }
     }
 }
 
