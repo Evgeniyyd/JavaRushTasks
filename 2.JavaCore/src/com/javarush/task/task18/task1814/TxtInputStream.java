@@ -19,7 +19,8 @@ public class TxtInputStream extends FileInputStream {
         }
 
     }
-
+ //ТЕСТ!! НО БУДЕТ ВСЕГДА ВЫДАВАТЬ ОШИБКИ!!
+ // КАТОРЫЕ НУЖНО ЛОВИТЬ И В ЗАВИСИМОТИ ОТ ОШИБКИ ВЫДАВАТЬ СООБЩЕНИЯ
     public static void main(String[] args) throws IOException {
         TxtInputStream stream = null;
         try {
