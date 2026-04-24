@@ -21,26 +21,25 @@ public class Solution {
             if (args.length > 0 && args[0].equals("-u")) {
                 String format = " ";
                 String idIsArgs = args[1];
-                for (String str : list) {
-                    String idIsFile = str.substring(0, 8).trim();
+                for (int i = 0; i < list.size(); i++) {
+                    String idIsFile = idIsArgs.substring(0, 8).trim();
                     if (idIsArgs.equals(idIsFile)) {
                         String productName = args[2];
                         String price = args[3];
                         String quantity = args[4];
                         format = String.format("%-8.8s%-30.30s%-8.8s%-4.4s",
                                 idIsArgs, productName, price, quantity);
-
+                        list.set(i,format);
 
                     }
+                    writer.write(format);
                 }
-//                for (int i = 0; i < list.size(); i++) {
-//                    list.set(i, format);
-//                }
-//                writer.write(format);
             }
         }
+
     }
 }
+
 
 
 
