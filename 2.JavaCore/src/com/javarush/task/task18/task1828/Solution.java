@@ -3,6 +3,9 @@ package com.javarush.task.task18.task1828;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /* 
 Прайсы 2
@@ -13,7 +16,7 @@ public class Solution {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String fileName = console.readLine();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-           ArrayList<String> list = new ArrayList<>();
+            ArrayList<String> list = new ArrayList<>();
 
             while (reader.ready()) {
                 String string = reader.readLine();
@@ -29,7 +32,7 @@ public class Solution {
                         String quantity = args[4];
                         String format = String.format("%-8.8s%-30.30s%-8.8s%-4.4s",
                                 idIsArgs, productName, price, quantity);
-                       list.set(i, format);
+                        list.set(i, format);
                     }
                 }
             } else if (args.length > 0 && args[0].equals("-d")) {
@@ -50,7 +53,30 @@ public class Solution {
             }
         }
     }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String fileName = reader.readLine();
+        try (BufferedReader bufer = new BufferedReader(new FileReader(fileName))) {
+            Map<String, String> map = new HashMap<>();
+
+            while (bufer.ready()) {
+                String line = bufer.readLine();
+                String idIsFile = line.substring(0, 8).trim();
+                map.put(idIsFile, line);
+            }
+            if (args[0].equals("-u")) {
+                String idIsArgs = args[1];
+                if (map.containsKey(idIsArgs)) {
+                    String productName = args[2];
+                    String price = args[3];
+                    String quantity = args[4];
+                }
+            }
+        }
+    }
 }
+
 
 
 
