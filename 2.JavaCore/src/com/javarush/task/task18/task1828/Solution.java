@@ -54,11 +54,13 @@ public class Solution {
         }
     }
 
+    //РЕШЕНИЕ ЧЕРЕЗ MAP КОЛЕКЦИЮ
+
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String fileName = reader.readLine();
+        Map<String, String> map = new HashMap<>();
         try (BufferedReader bufer = new BufferedReader(new FileReader(fileName))) {
-            Map<String, String> map = new HashMap<>();
 
             while (bufer.ready()) {
                 String line = bufer.readLine();
@@ -71,8 +73,21 @@ public class Solution {
                     String productName = args[2];
                     String price = args[3];
                     String quantity = args[4];
+                    String format = String.format("%-8.8s%-30.30s%-8.8s%-4.4s",
+                            idIsArgs, productName, price, quantity);
+                    map.put(idIsArgs,format);
+                }
+            }else if (  args[0].equals("-d")){
+                String idIsArgs = args[1];
+                if (map.containsKey(idIsArgs)){
+                    map.remove(idIsArgs);
                 }
             }
+        }
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))){
+             for (Map.Entry<String,String> entry : map.entrySet()){
+                 writer.write(entry.getKey() + " "+entry.getValue());
+             }
         }
     }
 }
