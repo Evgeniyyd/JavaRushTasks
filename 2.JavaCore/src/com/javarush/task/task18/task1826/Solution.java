@@ -1,8 +1,6 @@
 package com.javarush.task.task18.task1826;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 
 /* 
 Шифровка
@@ -15,17 +13,13 @@ public class Solution {
         try (FileInputStream fileName = new FileInputStream(fileOne);
              FileOutputStream fileOutputName = new FileOutputStream(fileTwo)) {
             while (fileName.available() > 0) {
-                if (args.length > 0 && args[1].equals("-c")) {
-                    String name = fileOne.getName();
-                    char[] charArray = name.toCharArray();
-                    for (int i = 0; i < charArray.length - 1; i++) {
-                            char simbol = charArray[charArray.length-1];
-                            charArray[i] = charArray[charArray.length-1];
-                             simbol = charArray[i];
-                        }
-                    }
+                if (args.length > 0 && args[1].equals("-e")) {
+                    fileOutputName.write(fileName.read()+1);
+                } else if (args[1].equals("-d")) {
+                    fileOutputName.write(fileName.read()-1);
                 }
             }
         }
     }
+}
 
