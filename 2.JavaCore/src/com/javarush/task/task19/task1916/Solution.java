@@ -45,11 +45,8 @@ public class Solution {
         }
         if (oneList.isEmpty()) {
             lines.add(new LineItem(Type.SAME, twoList.get(1)));
-            oneList.remove(0);
         } else if (twoList.isEmpty()) {
             lines.add(new LineItem(Type.REMOVED, oneList.get(0)));
-            oneList.remove(0);
-
         }
         lines.forEach(System.out::println);
     }
