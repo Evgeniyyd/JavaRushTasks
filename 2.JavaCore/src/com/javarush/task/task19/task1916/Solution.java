@@ -17,8 +17,9 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         List<String> oneList = new ArrayList<>();
         List<String> twoList = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try (BufferedReader fileOne = new BufferedReader(new FileReader(reader.readLine()));
+
+        try ( BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+              BufferedReader fileOne = new BufferedReader(new FileReader(reader.readLine()));
              BufferedReader fileTwo = new BufferedReader(new FileReader(reader.readLine()))) {
 
             while (fileOne.ready()) {
@@ -44,7 +45,7 @@ public class Solution {
             }
         }
         if (oneList.isEmpty()) {
-            lines.add(new LineItem(Type.SAME, twoList.get(1)));
+            lines.add(new LineItem(Type.ADDED, twoList.get(1)));
         } else if (twoList.isEmpty()) {
             lines.add(new LineItem(Type.REMOVED, oneList.get(0)));
         }
