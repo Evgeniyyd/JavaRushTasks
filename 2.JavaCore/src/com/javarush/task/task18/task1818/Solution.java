@@ -9,13 +9,20 @@ import java.io.*;
 public class Solution {
     public static void main(String[] args) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-             BufferedReader fileThree = new BufferedReader(new FileReader(reader.readLine()));
-             BufferedReader fileTwo = new BufferedReader(new FileReader(reader.readLine()));
-             BufferedWriter fileOne = new BufferedWriter(new FileWriter(reader.readLine(),true))) {
-            while (reader.ready()) {
+             FileOutputStream fileOne = new FileOutputStream(reader.readLine(), true);
+             FileInputStream fileTwo = new FileInputStream(reader.readLine());
+            FileInputStream fileThree = new FileInputStream(reader.readLine())) {
+            int one;
+            while ((one = fileTwo.read()) != -1) {
+             fileOne.write(one);
+            }
 
-
+            int two;
+            while ((two = fileThree.read()) != -1){
+               fileOne.write(two);
             }
         }
     }
 }
+
+
