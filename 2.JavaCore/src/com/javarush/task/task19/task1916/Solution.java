@@ -12,14 +12,14 @@ import java.util.List;
 */
 
 public class Solution {
-    public static List<LineItem> lines = new ArrayList<LineItem>();
+    public static List<LineItem> lines = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         List<String> oneList = new ArrayList<>();
         List<String> twoList = new ArrayList<>();
 
-        try ( BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-              BufferedReader fileOne = new BufferedReader(new FileReader(reader.readLine()));
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+             BufferedReader fileOne = new BufferedReader(new FileReader(reader.readLine()));
              BufferedReader fileTwo = new BufferedReader(new FileReader(reader.readLine()))) {
 
             while (fileOne.ready()) {
@@ -45,8 +45,9 @@ public class Solution {
             }
         }
         if (oneList.isEmpty()) {
-            lines.add(new LineItem(Type.ADDED, twoList.get(1)));
-        } else if (twoList.isEmpty()) {
+            lines.add(new LineItem(Type.ADDED, twoList.get(0)));
+        }
+        if (twoList.isEmpty()) {
             lines.add(new LineItem(Type.REMOVED, oneList.get(0)));
         }
         lines.forEach(System.out::println);
