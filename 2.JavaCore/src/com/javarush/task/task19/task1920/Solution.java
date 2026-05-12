@@ -3,7 +3,9 @@ package com.javarush.task.task19.task1920;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 /* 
 Самый богатый
@@ -11,33 +13,32 @@ import java.util.*;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
+        try (BufferedReader arg = new BufferedReader(new FileReader(args[0]))) {
             Map<String, Double> map = new HashMap<>();
-            while (reader.ready()) {
-                String string = reader.readLine();
+            while (arg.ready()) {
+                String string = arg.readLine();
                 String[] split = string.split(" ");
                 String name = split[0];
-                double value = Double.parseDouble(split[1]);
+                double many = Double.parseDouble(split[1]);
                 if (map.containsKey(name)) {
-                    map.put(name, value + map.get(name));
+                    map.put(name, many + map.get(name));
                 } else {
-                    map.put(name, value);
+                    map.put(name, many);
                 }
             }
-            Double max = 0.0;
+            double max = 0.;
             for (Double value : map.values()) {
                 if (value > max) {
                     max = value;
                 }
             }
-            for (Map.Entry<String, Double> entry : map.entrySet()) {
-                Double value = entry.getValue();
-                String key = entry.getKey();
-                if (max.equals(value)) {
-                    System.out.println(key);
+            for (String names : map.keySet()) {
+                if (map.containsValue(max)) {
+                    System.out.println(names);
                 }
             }
         }
     }
 }
+
 
