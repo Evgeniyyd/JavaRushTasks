@@ -3,9 +3,9 @@ package com.javarush.task.task19.task1920;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+
 
 /* 
 Самый богатый
@@ -32,10 +32,12 @@ public class Solution {
                     max = value;
                 }
             }
+
             for (String names : map.keySet()) {
-                if (map.containsValue(max)) {
+                Double v = map.get(names);
+                if (v.equals(max)){
                     System.out.println(names);
-                }
+               }
             }
         }
     }
