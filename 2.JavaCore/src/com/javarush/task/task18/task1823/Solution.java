@@ -16,51 +16,45 @@ public class Solution {
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String console;
-        while ((console = reader.readLine()) != null) {
-            if (console.equals("exit")) {
+        while (true) {
+            String line = reader.readLine();
+            if (line.equals("exit")) {
                 break;
             }
-            ReadThread thread = new ReadThread(console);
-            thread.start();
+            ReadThread readThread = new ReadThread(line);
+            readThread.start();
         }
     }
 
     public static class ReadThread extends Thread {
-        String name;
+        public String name;
 
         public ReadThread(String fileName) {
             this.name = fileName;
-            //implement constructor body
         }
 
         @Override
         public void run() {
-            try (FileInputStream inputStream = new FileInputStream(name)) {
-                Map<Integer, Integer> map = new HashMap<>();
-                int key;
-                while ((key = inputStream.read()) != -1) {
-                    if (!map.containsKey(key)) {
-                        map.put(key, 1);
-                    } else {
-                        map.put(key, map.get(key) + 1);
-                    }
+            try {
+                FileInputStream inputStream = new FileInputStream(name);
+                int bytes;
+                int[] array = new int[256];
+                while ((bytes = inputStream.read()) != -1) {
+                    array[bytes]++;
                 }
-                int count = 0;
+                int maxCount = 0;
                 int maxByte = 0;
-                for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-                    if (entry.getValue() > count) {
-                        count = entry.getValue();
-                        maxByte = entry.getKey();
+                for (int i = 0; i < array.length; i++) {
+                    if (array[i] > maxCount) {
+                        maxCount = array[i];
+                        maxByte = i;
                     }
                 }
                 resultMap.put(name, maxByte);
+                inputStream.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 }
-
-
-
