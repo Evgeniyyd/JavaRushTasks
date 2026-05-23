@@ -7,7 +7,7 @@ import java.util.Map;
 /* 
 Нити и байты
 */
-
+//РЕШЕНИЕ ЧЕРЕЗ МАССИВЫ
 public class Solution {
     public final static Map<String, Integer> resultMap = new HashMap<String, Integer>();
 
