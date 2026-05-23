@@ -2,6 +2,8 @@ package com.javarush.task.task18.task1824;
 
 import java.io.*;
 
+
+
 /* 
 Файлы и исключения
 */
@@ -9,16 +11,18 @@ import java.io.*;
 public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try(FileInputStream file = new FileInputStream(new File(reader.readLine()))){
-        String fileName = "";
-        try {
-            while (file.read() != -1) {
-               fileName = reader.readLine();
+        while (true) {
+            String line = reader.readLine();
+            try {
+                FileInputStream inputStream = new FileInputStream(line);
+                inputStream.close();
+            } catch (FileNotFoundException e) {
+                System.out.println(line);
+                break;
             }
-        } catch (FileNotFoundException e) {
-            System.out.println(fileName);
         }
+        reader.close();
     }
 }
-}
+
 
