@@ -32,7 +32,7 @@ public class Solution {
 
         @Override
         public String getHeaderText() {
-            return aTable.getCurrentUserName() + ":" + aTable.getTableName();
+            return "[" + aTable.getCurrentUserName() + "] " + ": " + aTable.getTableName();
         }
     }
 
