@@ -1,5 +1,6 @@
 package com.javarush.task.task19.task1903;
 
+import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,30 +10,59 @@ import java.util.Map;
 
 public class Solution {
     public static Map<String, String> countries = new HashMap<String, String>();
+
     static {
-        countries.put("UA","Ukraine 501234567");
-        countries.put("RU","Russia 00000000");
-        countries.put("CA","Canada 71112233");
+        countries.put("UA", "Ukraine");
+        countries.put("RU", "Russia");
+        countries.put("CA", "Canada");
     }
 
     public static void main(String[] args) {
     }
 
-    public static class IncomeDataAdapter implements Customer{
-        public final IncomeData data;
+    public static class IncomeDataAdapter implements Customer, Contact {
+        public IncomeData data;
 
         public IncomeDataAdapter(IncomeData data) {
             this.data = data;
         }
 
         @Override
+        public String getName() {
+            return data.getContactLastName() + ", " + data.getContactFirstName();
+        }
+
+        @Override
+        public String getPhoneNumber() {
+            StringBuilder builder = new StringBuilder();
+            builder.append(data.getPhoneNumber());
+            while (builder.length() < 10) {
+                builder.insert(0, "0");
+            }
+            String string = builder.toString();
+            String substring0 = string.substring(0, 3);
+            String substring1 = string.substring(3, 6);
+            String substring2 = string.substring(6, 8);
+            String substring3 = string.substring(8);
+
+
+            return "+" + data.getCountryPhoneCode() +
+                    "(" +
+                    substring0+")" +
+                    substring1+"-" +
+                    substring2+"-"+
+                    substring3;
+        }
+
+        @Override
         public String getCompanyName() {
-            return "" ;
+            return data.getCompany();
         }
 
         @Override
         public String getCountryName() {
-            return data.getCompany();
+
+            return countries.get(data.getCountryCode());
         }
     }
 
