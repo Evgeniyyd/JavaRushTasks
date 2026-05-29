@@ -18,7 +18,6 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-
     }
 
     public static class DataAdapter implements RowItem {
@@ -42,22 +41,28 @@ public class Solution {
 
         @Override
         public String getCompany() {
-            return "";
+            return customer.getCompanyName();
         }
 
         @Override
         public String getContactFirstName() {
-            return "";
+            String lastName = contact.getName();
+            int indexOf = lastName.indexOf(",") + 1;
+            return lastName.substring(indexOf).trim();
         }
 
         @Override
         public String getContactLastName() {
-            return "";
+            String firstName = contact.getName();
+            int indexOf = firstName.indexOf(",");
+
+            return firstName.substring(0, indexOf);
         }
 
         @Override
         public String getDialString() {
-            return "";
+            String string = contact.getPhoneNumber();
+            return "+" + string.replaceAll("\\D", "");
         }
     }
 
