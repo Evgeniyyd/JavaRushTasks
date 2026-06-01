@@ -15,11 +15,82 @@ public class Util {
     }
 
     public static List<Jeans> getAllJeans() {
-        abstract class AbstractJeans implements Jeans{
+        abstract class AbstractJeans implements Jeans {
+            public AbstractJeans(int id, int length, int size, double price) {
+            }
 
+            @Override
+            public String toString() {
+                    return this.getClass().getSimpleName();
+            }
         }
-       class
-        //add your code here
+        class Denim extends AbstractJeans{
+
+            public Denim(int id, int length, int size, double price) {
+                super(id,length,size,price);
+            }
+
+            @Override
+            public int getLength() {
+                for (Object[] objects : jeansArray) {
+                    if (objects.equals(objects[1])){
+
+                    }
+                }
+                return 0;
+            }
+
+            @Override
+            public int getSize() {
+                return 0;
+            }
+
+            @Override
+            public int getId() {
+                return 0;
+            }
+
+            @Override
+            public double getPrice() {
+                return 0;
+            }
+
+            @Override
+            public String getTM() {
+                return "";
+            }
+        }
+        class Levis extends AbstractJeans {
+
+            public Levis(int id, int length, int size, double price) {
+               super(id,length,size,price);
+            }
+
+            @Override
+            public int getLength() {
+                return 0;
+            }
+
+            @Override
+            public int getSize() {
+                return 0;
+            }
+
+            @Override
+            public int getId() {
+                return 0;
+            }
+
+            @Override
+            public double getPrice() {
+                return 0;
+            }
+
+            @Override
+            public String getTM() {
+                return "";
+            }
+        }
 
         List<Jeans> allJeans = new LinkedList<>();
 
@@ -37,6 +108,26 @@ public class Util {
                 jeans = new Denim(id, length, size, price);
             } else {
                 jeans = new AbstractJeans(id, length, size, price) {
+                    @Override
+                    public int getLength() {
+                        return 0;
+                    }
+
+                    @Override
+                    public int getSize() {
+                        return 0;
+                    }
+
+                    @Override
+                    public int getId() {
+                        return 0;
+                    }
+
+                    @Override
+                    public double getPrice() {
+                        return 0;
+                    }
+
                     public String getTM() {
                         return company.fullName;
                     }
