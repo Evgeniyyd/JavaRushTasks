@@ -16,54 +16,88 @@ public class Util {
 
     public static List<Jeans> getAllJeans() {
         abstract class AbstractJeans implements Jeans {
+            private int id;
+            private int length;
+            private int size;
+            private double price;
+
             public AbstractJeans(int id, int length, int size, double price) {
+                this.id = id;
+                this.length = length;
+                this.size = size;
+                this.price = price;
             }
 
             @Override
             public String toString() {
-                    return this.getClass().getSimpleName();
+                return this.getClass().getSimpleName();
             }
         }
-        class Denim extends AbstractJeans{
+        class Denim extends AbstractJeans {
 
             public Denim(int id, int length, int size, double price) {
-                super(id,length,size,price);
+                super(id, length, size, price);
             }
 
             @Override
             public int getLength() {
+                Object length = 0;
                 for (Object[] objects : jeansArray) {
-                    if (objects.equals(objects[1])){
-
+                    if (objects[1].equals(Company.Denim)) {
+                        length = objects[3];
                     }
                 }
-                return 0;
+                return (int) length;
             }
 
             @Override
             public int getSize() {
-                return 0;
+                Object size = 0;
+                for (Object[] objects : jeansArray) {
+                    if (objects[1].equals(Company.Denim)) {
+                        size = objects[2];
+                    }
+                }
+                return (int) size;
             }
 
             @Override
             public int getId() {
-                return 0;
+                Object id = 0;
+                for (Object[] objects : jeansArray) {
+                    if (objects[1].equals(Company.Denim)) {
+                        id = objects[0];
+                    }
+                }
+                return (int) id;
             }
 
             @Override
             public double getPrice() {
-                return 0;
+                Object price = 0;
+                for (Object[] objects : jeansArray) {
+                    if (objects[1].equals(Company.Denim)) {
+                        price = objects[4];
+                    }
+                }
+                return (double) price;
             }
 
             @Override
             public String getTM() {
-                return "";
+                Object tm = "";
+                for (Object[] objects : jeansArray) {
+                    if (objects[1].equals(Company.Denim)) {
+                        tm = objects[1];
+                    }
+                }
+                return tm.toString();
             }
         }
         class Levis extends AbstractJeans {
 
             public Levis(int id, int length, int size, double price) {
-               super(id,length,size,price);
+                super(id, length, size, price);
             }
 
             @Override
