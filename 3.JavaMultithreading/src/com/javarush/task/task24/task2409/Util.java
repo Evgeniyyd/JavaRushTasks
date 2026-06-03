@@ -40,6 +40,17 @@ public class Util {
             }
 
             @Override
+            public int getId() {
+                Object id = 0;
+                for (Object[] objects : jeansArray) {
+                    if (objects[1].equals(Company.Denim)) {
+                        id = objects[0];
+                    }
+                }
+                return (int) id;
+            }
+
+            @Override
             public int getLength() {
                 Object length = 0;
                 for (Object[] objects : jeansArray) {
@@ -61,16 +72,6 @@ public class Util {
                 return (int) size;
             }
 
-            @Override
-            public int getId() {
-                Object id = 0;
-                for (Object[] objects : jeansArray) {
-                    if (objects[1].equals(Company.Denim)) {
-                        id = objects[0];
-                    }
-                }
-                return (int) id;
-            }
 
             @Override
             public double getPrice() {
@@ -102,27 +103,57 @@ public class Util {
 
             @Override
             public int getLength() {
-                return 0;
+                int length = 0;
+                for (Object[] objects : jeansArray) {
+                    if (objects[1].equals(Company.Levis)) {
+                        length = (int) objects[1];
+                    }
+                }
+                return length;
             }
 
             @Override
             public int getSize() {
-                return 0;
+                int size = 0;
+                for (Object[] objects : jeansArray) {
+                    if (objects[1].equals(Company.Levis)) {
+                        size = (int) objects[2];
+                    }
+                }
+                return size;
             }
 
             @Override
             public int getId() {
-                return 0;
+                int id = 0;
+                for (Object[] objects : jeansArray) {
+                    if (objects[1].equals(Company.Levis)) {
+                        id = (int) objects[0];
+                    }
+                }
+                return id;
             }
 
             @Override
             public double getPrice() {
-                return 0;
+                double price = 0;
+                for (Object[] objects : jeansArray) {
+                    if (objects[1].equals(Company.Levis)) {
+                        price = (double) objects[4];
+                    }
+                }
+                return price;
             }
 
             @Override
             public String getTM() {
-                return "";
+                String it="";
+                for (Object[] objects : jeansArray) {
+                    if (objects[1].equals(Company.Levis)){
+                       it=(String) objects[1];
+                    }
+                }
+                return it;
             }
         }
 
@@ -144,6 +175,7 @@ public class Util {
                 jeans = new AbstractJeans(id, length, size, price) {
                     @Override
                     public int getLength() {
+
                         return 0;
                     }
 
