@@ -1,14 +1,8 @@
 package com.javarush.task.task19.task1904;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
@@ -18,10 +12,13 @@ import java.util.Scanner;
 
 public class Solution {
 
-    public static void main(String[] args) {
-        var date = new Date("21.29.2008");
-        Person person = new Person("bdfyjd", "dkssdjsdksdk", "ksdkdsk", date);
+    public static void main(String[] args)throws IOException {
+        String path = "D:\\MyProject\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1904\\file";
+       Scanner scanner = new Scanner(new File(path));
+       PersonScannerAdapter adapter = new PersonScannerAdapter(scanner);
+        Person person= adapter.read();
         System.out.println(person);
+
     }
 
     public static class PersonScannerAdapter implements PersonScanner {
@@ -34,25 +31,16 @@ public class Solution {
 
         @Override
         public Person read() throws IOException {
-            String birthDate;
-            String name;
-            Person person;
-            try (FileInputStream fileInputStream = new FileInputStream(fileScanner.nextLine());
-                 InputStreamReader reader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
-                 BufferedReader fileReader = new BufferedReader(reader)) {
-                String string = fileReader.readLine();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-                name = string.replaceAll("[0-9]", "").trim();
-                String[] split = name.split(" ");
-                String surname = split[0];
-                String names = split[1];
-                String patronymic = split[2];
-                birthDate = string.replaceAll("\\D ", "").trim();
-                LocalDate parse = LocalDate.parse(birthDate,formatter);
-                Date from = Date.from(Instant.from(parse));
-                person = new Person(surname,names,patronymic,from);
-            }
-            return person;
+            String string = fileScanner.nextLine();
+            String[] split = string.split(" ");
+            String surname = split[0];
+            String names = split[1];
+            String patronymic = split[2];
+            int day = Integer.parseInt(split[3]);
+            int mouth = Integer.parseInt(split[4]);
+            int year = Integer.parseInt(split[5]);
+            Calendar calendar = new GregorianCalendar(year, mouth - 1, day);
+            return new Person(names, patronymic, surname, calendar.getTime());
         }
 
         @Override
