@@ -6,7 +6,8 @@ import java.io.*;
 Свой FileWriter
 */
 
-public class FileConsoleWriter {
+public class FileConsoleWriter implements Serializable {
+
     private FileWriter fileWriter;
 
    public  FileConsoleWriter (String fileName) throws IOException{
