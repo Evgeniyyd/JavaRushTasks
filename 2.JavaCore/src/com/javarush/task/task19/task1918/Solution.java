@@ -15,16 +15,30 @@ public class Solution {
         try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
              BufferedReader reader = new BufferedReader(new FileReader(console.readLine()))) {
             String line;
-            int startIndex=0;
             StringBuilder builder = new StringBuilder();
             while ((line = reader.readLine()) != null) {
                 builder.append(line);
             }
+            int count = 0;
+            int nexOpen;
+            int nexClosed;
+            int startIndex = 0;
+            int tagStart = 0;
+           int tagEnd=0;
+            String open = "<" + args[0];
+            String close = "</" + args[0] + ">";
             String str = builder.toString();
-            while (startIndex != -1) {
-                int arg = str.indexOf(args[0], startIndex);
-                if (arg != -1){
-                   startIndex=arg;
+            while () {
+                nexOpen = str.indexOf(open, startIndex);
+                nexClosed = str.indexOf(close, startIndex + 1);
+                if (nexOpen < nexClosed && nexOpen != -1) {
+                    startIndex = nexOpen+1;
+                    tagStart = startIndex;
+                    count++;
+                } else if (){
+                    startIndex = nexOpen+1;
+                    tagEnd = startIndex;
+                    count--;
                 }
             }
         }
