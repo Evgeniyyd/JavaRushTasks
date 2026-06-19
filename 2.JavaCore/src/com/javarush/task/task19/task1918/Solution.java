@@ -20,25 +20,27 @@ public class Solution {
                 builder.append(line);
             }
             int count = 0;
-            int nexOpen;
+            int nexOpen = 0;
             int nexClosed;
             int startIndex = 0;
             int tagStart = 0;
-           int tagEnd=0;
+            int tagEnd = 0;
             String open = "<" + args[0];
             String close = "</" + args[0] + ">";
             String str = builder.toString();
-            while () {
+            while (startIndex != -1) {
                 nexOpen = str.indexOf(open, startIndex);
                 nexClosed = str.indexOf(close, startIndex + 1);
                 if (nexOpen < nexClosed && nexOpen != -1) {
-                    startIndex = nexOpen+1;
-                    tagStart = startIndex;
+                    startIndex = nexOpen + 1;
+                    tagStart = nexOpen;
                     count++;
-                } else if (){
-                    startIndex = nexOpen+1;
-                    tagEnd = startIndex;
+                } else if (nexOpen > nexClosed) {
+                    startIndex = nexClosed;
                     count--;
+                }
+                if (count == 0) {
+                    tagEnd =;
                 }
             }
         }
