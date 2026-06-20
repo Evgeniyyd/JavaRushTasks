@@ -21,7 +21,7 @@ public class Solution {
             }
             int count = 0;
             int nexOpen = 0;
-            int nexClosed;
+            int nexClosed = 0;
             int startIndex = 0;
             int tagStart = 0;
             int tagEnd = 0;
@@ -35,14 +35,16 @@ public class Solution {
                     startIndex = nexOpen + 1;
                     tagStart = nexOpen;
                     count++;
-                } else if (nexOpen > nexClosed) {
+                }else  if (nexOpen > nexClosed) {
                     startIndex = nexClosed;
                     count--;
-                }
-                if (count == 0) {
-                    tagEnd =;
+                }  if (count == 0) {
+                    tagEnd = nexClosed;
+                    break;
                 }
             }
+            String substring = str.substring(tagStart, tagEnd + close.length());
+            System.out.println(substring);
         }
     }
 }
