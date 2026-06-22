@@ -40,11 +40,10 @@ public class Solution {
                     count--;
                 }  if (count == 0) {
                     tagEnd = nexClosed;
-                    break;
+                    String substring = str.substring(tagStart, tagEnd + close.length());
+                    System.out.println(substring);
                 }
             }
-            String substring = str.substring(tagStart, tagEnd + close.length());
-            System.out.println(substring);
         }
     }
 }
