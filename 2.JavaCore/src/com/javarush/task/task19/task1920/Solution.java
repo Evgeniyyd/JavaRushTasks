@@ -3,9 +3,8 @@ package com.javarush.task.task19.task1920;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.io.InputStreamReader;
+import java.util.*;
 
 /* 
 Самый богатый
@@ -13,34 +12,32 @@ import java.util.Map;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        try (BufferedReader arg = new BufferedReader(new FileReader(args[0]))) {
-            Map<String, Double> map = new HashMap<>();
-            while (arg.ready()) {
-                String string = arg.readLine();
-                String[] split = string.split(" ");
-                String name = split[0];
-                double many = Double.parseDouble(split[1]);
-                if (map.containsKey(name)) {
-                    map.put(name, many + map.get(name));
+        try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+             BufferedReader reader = new BufferedReader(new FileReader(console.readLine()))) {
+            String line;
+            String name;
+            Map<String, Double> map = new TreeMap<>();
+            while ((line = reader.readLine()) != null) {
+                String[] split = line.split(" ");
+                name = split[0];
+                double parsed = Double.parseDouble(split[1]);
+                if (!map.containsKey(name)) {
+                    map.put(name, parsed);
                 } else {
-                    map.put(name, many);
+                    map.put(name, map.get(name) + parsed);
                 }
             }
-            double max = 0.;
-            for (Double value : map.values()) {
-                if (value > max) {
-                    max = value;
+            String maxKey = "";
+            double maxValue= Double.NEGATIVE_INFINITY;
+            Set<String> keySet = map.keySet();
+            for (String key : keySet) {
+                Double values = map.get(key);
+                if (values > maxValue) {
+                    maxValue = values;
+                    maxKey = key;
                 }
             }
-
-            for (String names : map.keySet()) {
-                Double v = map.get(names);
-                if (v.equals(max)){
-                    System.out.println(names);
-               }
-            }
+            System.out.println(maxKey);
         }
     }
 }
-
-
