@@ -31,9 +31,9 @@ public class Solution {
             double maxValue= Double.NEGATIVE_INFINITY;
             Set<String> keySet = map.keySet();
             for (String key : keySet) {
-                Double values = map.get(key);
-                if (values > maxValue) {
-                    maxValue = values;
+                Double value = map.get(key);
+                if (value > maxValue) {
+                    maxValue = value;
                     maxKey = key;
                 }
             }
