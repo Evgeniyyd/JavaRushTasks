@@ -12,8 +12,7 @@ import java.util.*;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-             BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
             String line;
             String name;
             Map<String, Double> map = new TreeMap<>();
@@ -27,16 +26,23 @@ public class Solution {
                     map.put(name, map.get(name) + parsed);
                 }
             }
+            //C использованием алгаритма и тд
+//            Double maxValue = Collections.max(map.values());
+//            List<String> list = new ArrayList<>();
+//            for (Map.Entry<String, Double> entry : map.entrySet()) {
+//                if (entry.getValue().equals(maxValue)) {
+//                    list.add(entry.getKey());
+//                }
+//            }
+//            for (String maxKey : list) {
+//                System.out.println(maxKey);
+//            }
+            // С использованием stream()
             Double maxValue = Collections.max(map.values());
-            List<String> list = new ArrayList<>();
-            for (Map.Entry<String, Double> entry : map.entrySet()) {
-                if (entry.getValue().equals(maxValue)) {
-                    list.add(entry.getKey());
-                }
-            }
-            for (String maxKey : list) {
-                System.out.println(maxKey);
-            }
+             map.entrySet().stream()
+                     .filter(element -> element.getValue()
+                             .equals(maxValue)).map(Map.Entry::getKey)
+                     .toList();
         }
     }
 }
