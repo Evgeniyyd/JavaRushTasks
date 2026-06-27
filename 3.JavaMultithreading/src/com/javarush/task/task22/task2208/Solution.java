@@ -1,9 +1,7 @@
 package com.javarush.task.task22.task2208;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /* 
 Формируем WHERE
@@ -27,7 +25,7 @@ public class Solution {
         }
         StringBuilder builder = new StringBuilder();
         for (Map.Entry<String, String> entry : params.entrySet()) {
-            String value = null;
+            String value = entry.getValue();
             String key = entry.getKey();
             if (value != null) {
                 builder.append(key).append(" =")
@@ -43,4 +41,3 @@ public class Solution {
         return builder.toString();
     }
 }
-

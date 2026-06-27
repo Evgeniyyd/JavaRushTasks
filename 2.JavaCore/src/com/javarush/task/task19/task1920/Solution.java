@@ -13,7 +13,7 @@ import java.util.*;
 public class Solution {
     public static void main(String[] args) throws IOException {
         try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-             BufferedReader reader = new BufferedReader(new FileReader(console.readLine()))) {
+             BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
             String line;
             String name;
             Map<String, Double> map = new TreeMap<>();
