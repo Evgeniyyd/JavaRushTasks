@@ -27,17 +27,17 @@ public class Solution {
                     map.put(name, map.get(name) + parsed);
                 }
             }
-            String maxKey = "";
-            double maxValue= Double.NEGATIVE_INFINITY;
-            Set<String> keySet = map.keySet();
-            for (String key : keySet) {
-                Double value = map.get(key);
-                if (value > maxValue) {
-                    maxValue = value;
-                    maxKey = key;
+            Double maxValue = Collections.max(map.values());
+            List<String> list = new ArrayList<>();
+            for (Map.Entry<String, Double> entry : map.entrySet()) {
+                if (entry.getValue().equals(maxValue)) {
+                    list.add(entry.getKey());
                 }
             }
-            System.out.println(maxKey);
+            for (String maxKey : list) {
+                System.out.println(maxKey);
+            }
         }
     }
 }
+
