@@ -3,6 +3,7 @@ package com.javarush.task.task19.task1921;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -25,9 +26,11 @@ public class Solution {
 
 
 
+
             for (int i = 0; i < split.length-3; i++) {
-                builder.append(split[i]);
+                builder.append(split[i]).append(" ");
             }
+            String name = builder.toString().trim();
 
         }
     }
