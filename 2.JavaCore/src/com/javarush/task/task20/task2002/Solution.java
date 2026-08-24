@@ -20,12 +20,15 @@ public class Solution {
             InputStream inputStream = new FileInputStream(yourFile);
 
             JavaRush javaRush = new JavaRush();
-            //initialize users field for the javaRush object here - инициализируйте поле users для объекта javaRush тут
+            User user = new User("bdfd", "dfdfsd", new Date(), true, User.Country.RUSSIA);
+            javaRush.users.add(user);
             javaRush.save(outputStream);
             outputStream.flush();
 
             JavaRush loadedObject = new JavaRush();
             loadedObject.load(inputStream);
+            System.out.println(javaRush.equals(loadedObject));
+
             //here check that the javaRush object is equal to the loadedObject object - проверьте тут, что javaRush и loadedObject равны
 
             outputStream.close();
@@ -45,13 +48,14 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             try (PrintWriter writer = new PrintWriter(outputStream)) {
-                while (!users.isEmpty()) {
+                if (!users.isEmpty()) {
                     for (User user : users) {
                         String firstName = user.getFirstName();
                         String lastName = user.getLastName();
-                        long birthDate = Long.parseLong(String.valueOf(user.getBirthDate()));
+                        long birthDate = user.getBirthDate().getTime();
+                        boolean male = user.isMale();
                         String country = String.valueOf(user.getCountry());
-                        writer.println(firstName + " " + lastName + " " + birthDate + " " + country);
+                        writer.println(firstName + " " + lastName + " " + birthDate + " "+male+" " + country);
 
                     }
                 }
@@ -60,18 +64,21 @@ public class Solution {
 
         public void load(InputStream inputStream) throws Exception {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-                while (!reader.ready()) {
+                while (reader.ready()) {
                     User user = new User();
                     String line1 = reader.readLine();
                     String[] split = line1.split(" ");
                     String firstName = split[0];
                     String lastName = split[1];
-                    String birth = split[2];
-                    String country = split[3];
+                    Date date = new Date(Long.parseLong(split[2]));
+                   boolean male = Boolean.parseBoolean(split[3]);
+                    String country = split[4];
                     user.setFirstName(firstName);
                     user.setLastName(lastName);
-                    user.setBirthDate(birth);
+                    user.setMale(male);
+                    user.setBirthDate(date);
                     user.setCountry(User.Country.valueOf(country));
+                    users.add(user);
                 }
             }
         }

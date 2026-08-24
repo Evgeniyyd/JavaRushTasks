@@ -8,6 +8,16 @@ public class User {
     private Date birthDate;
     private boolean isMale;
     private Country country;
+public  User(){
+
+}
+    public User(String firstName, String lastName, Date birthDate, boolean isMale, Country country) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.isMale = isMale;
+        this.country = country;
+    }
 
     public String getFirstName() {
         return firstName;
