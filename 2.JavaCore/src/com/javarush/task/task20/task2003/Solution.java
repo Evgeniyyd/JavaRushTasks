@@ -3,6 +3,7 @@ package com.javarush.task.task20.task2003;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 
 /* 
@@ -15,18 +16,16 @@ public class Solution {
 
     public static void save(OutputStream outputStream) throws Exception {
         boolean isEmpty = false;
-        String regexPattern =  "^\\s*[#!].*";
         try (PrintWriter writer = new PrintWriter(outputStream)) {
+            Properties properties = new Properties();
             for (Map.Entry<String, String> stringEntry : runtimeStorage.entrySet()) {
                 if (!isEmpty) {
                     String key = stringEntry.getKey();
                     String value = stringEntry.getValue();
-                    if (key.matches(regexPattern)) {
-                    } else {
-                        writer.println(key + " " + value);
-                    }
+                    properties.put(key, value);
                 }
             }
+            writer.println(properties);
         }
     }
     public static void load(InputStream inputStream) throws IOException {
