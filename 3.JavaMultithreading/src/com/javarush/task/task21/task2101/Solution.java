@@ -19,10 +19,12 @@ public class Solution {
     }
 
     public static void print(byte[] bytes) {
-        for (byte bByte : bytes) {
-
-
+        for (byte aByte : bytes) {
+            for (byte b = 7; b >= 0; b--) {
+                System.out.print((aByte >> b) & 1);
+            }
+            System.out.print(" ");
         }
-
+        System.out.println();
     }
 }
