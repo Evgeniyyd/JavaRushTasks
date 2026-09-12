@@ -21,25 +21,26 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         List<String> list = new ArrayList<>();
         try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in))) {
-            BufferedReader reader = new BufferedReader(new FileReader(console.readLine()));
-            while (reader.ready()) {
-                String line = reader.readLine();
-                list.add(line);
-            }
-        }
-        for (String file : list) {
-            int count = 0;
-            String[] split = file.split(" ");
-            for (int i = 0; i < split.length; i++) {
-                for (String word : words) {
-                    if (split[i].equalsIgnoreCase(word)) {
-                        count++;
-                    }
+            try (BufferedReader reader = new BufferedReader(new FileReader(console.readLine()))) {
+                while (reader.ready()) {
+                    String line = reader.readLine();
+                    list.add(line);
                 }
             }
-            if (count == 2) System.out.println(file);
+            for (String file : list) {
+                int count = 0;
+                String[] split = file.split(" ");
+                for (int i = 0; i < split.length; i++) {
+                    for (String word : words) {
+                        if (split[i].equalsIgnoreCase(word)) {
+                            count++;
+                        }
+                    }
+                }
+                if (count == 2) System.out.println(file);
             }
         }
     }
+}
 
 
