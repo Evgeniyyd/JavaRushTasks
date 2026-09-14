@@ -17,22 +17,23 @@ import java.util.regex.Pattern;
 public class Solution {
     public static Map<Integer, String> map = new HashMap<Integer, String>();
 
-    public static void main(String[] args) throws IOException{
+    static {
+        map.put(0, "ноль");
+        map.put(1, "один");
+        map.put(2, "два");
+        map.put(12, "двенадцать");
+    }
+
+    public static void main(String[] args) throws IOException {
         try (BufferedReader consol = new BufferedReader(new InputStreamReader(System.in));
-        BufferedReader fileReader = new BufferedReader(new FileReader(consol.readLine()))) {
+             BufferedReader fileReader = new BufferedReader(new FileReader(consol.readLine()))) {
             List<String> list = new ArrayList<>();
             while (fileReader.ready()) {
                 String line = fileReader.readLine();
-                list.add(line);
-            }
-            for (String string : list) {
-                String[] split = string.split(" ");
-                for (String isNamber : split) {
-                    if (isNamber.matches("\\d+")){
-                        int parseInt = Integer.parseInt(isNamber);
-
-                    }
+                for (Map.Entry<Integer, String> entry : map.entrySet()) {
+                    line = line.replaceAll("\\b" + entry.getKey() + "\\b", entry.getValue());
                 }
+                System.out.println(line);
             }
         }
     }
