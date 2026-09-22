@@ -13,19 +13,20 @@ public class Solution {
         try (BufferedReader reader = new BufferedReader(new FileReader(args[0]));
              BufferedWriter writer = new BufferedWriter(new FileWriter(args[1]))) {
             String line;
-            List<String> list = new ArrayList<>();
             while (reader.ready()) {
+                List<String> list = new ArrayList<>();
                 line = reader.readLine();
                 String[] split = line.split(" ");
                 for (String splitStr : split) {
                     if (splitStr.length() > 6) {
-                        list.add(splitStr + ",");
+                        list.add(splitStr+",");
+
                     }
                 }
-                List<String> arrays = list.stream().map(s -> s.equals(list.get(list.size()-1))
-                        ? s.substring(0, s.length() - 1) : s).toList();
+                List<String> arrays = list.stream().map(str -> list.indexOf(str) == list.size()-1
+                        ? str.substring(0, str.length() - 1) : str).toList();
                 for (String array : arrays) {
-                    writer.write(array+",");
+                    writer.write(array);
                     System.out.println(array);
                 }
             }
