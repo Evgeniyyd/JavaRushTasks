@@ -19,18 +19,22 @@ public class Solution {
                 String[] split = line.split(" ");
                 for (String splitStr : split) {
                     if (splitStr.length() > 6) {
-                        list.add(splitStr+",");
-
+                        list.add(splitStr + ",");
+                        System.out.println(list);
+                    }else{
+                        continue;
                     }
                 }
-                List<String> arrays = list.stream().map(str -> list.indexOf(str) == list.size()-1
-                        ? str.substring(0, str.length() - 1) : str).toList();
-                for (String array : arrays) {
-                    writer.write(array);
-                    System.out.println(array);
+                StringBuilder builder = new StringBuilder();
+                for (String array : list) {
+                    builder.append(array);
                 }
+                String string = builder.toString();
+                String substring = string.substring(0, string.length() - 1);
+                writer.write(substring);
             }
         }
     }
 }
+
 
