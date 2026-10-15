@@ -1,2 +1,3 @@
 -- Write your code here:
-SELECT DISTINCT id  FROM ip2country;
+SELECT DISTINCT country_code
+FROM ip2country;

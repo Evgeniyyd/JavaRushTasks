@@ -1,2 +1,2 @@
 -- Write your code here:
-SELECT IF(1>2,0,1);
+SELECT IF(1 > 2, 0, 1);
