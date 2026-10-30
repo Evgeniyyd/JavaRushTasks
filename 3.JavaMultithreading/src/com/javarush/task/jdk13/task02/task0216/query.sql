@@ -1,5 +1,5 @@
 -- Write your code here:
-SELECT position ,
+SELECT
        CASE
            WHEN position = 'backend developer' THEN 'yes'
            WHEN position = 'frontend developer' THEN 'yes'

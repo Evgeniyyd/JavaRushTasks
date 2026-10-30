@@ -1,5 +1,5 @@
 -- Write your code here:
-SELECT prod_year, count(prod_year)
+SELECT name, count(name)
 FROM cars
-WHERE prod_year =2021
-GROUP BY prod_year;
+WHERE prod_year = 2021
+GROUP BY name;

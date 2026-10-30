@@ -1,10 +1,9 @@
 -- Write your code here:
-SELECT number_of_season,
-       CASE
- WHEN number_of_season =1 THEN 'winter'
-WHEN number_of_season = 2 THEN 'spring'
-WHEN number_of_season =3 THEN 'summer'
-WHEN number_of_season =4 THEN 'autumn'
-ELSE 'unknown'
+SELECT CASE number_of_season
+           WHEN 1 THEN 'winter'
+           WHEN 2 THEN 'spring'
+           WHEN 3 THEN 'summer'
+           WHEN 4 THEN 'autumn'
+           ELSE 'unknown'
            END
 FROM months;

@@ -4,5 +4,4 @@
  WHEN prod_year = 2020 THEN 'new'
  WHEN prod_year = 2021 THEN 'newer'
  WHEN prod_year = 2022 THEN 'even newer' END
- FROM cars
- WHERE prod_year;
+ FROM cars;

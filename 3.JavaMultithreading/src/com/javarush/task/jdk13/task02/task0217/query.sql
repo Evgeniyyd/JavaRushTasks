@@ -1,8 +1,8 @@
 -- Write your code here:
-SELECT euro,
+SELECT
        CASE
            WHEN euro > 5 THEN 'best'
-           WHEN cars.euro = 5 THEN 'good'
+           WHEN euro = 5 THEN 'good'
            ELSE 'bad' END
 FROM cars
 WHERE prod_year > 2020
