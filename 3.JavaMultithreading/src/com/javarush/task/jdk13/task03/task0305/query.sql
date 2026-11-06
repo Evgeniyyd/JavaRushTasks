@@ -1,3 +1,3 @@
 -- Write your code here:
-SELECT gyms.id,gyms.name AS 'g', customers.name,customers.email AS 'c'
-FROM gyms,customers;
+SELECT g.id,g.name, c.name,c.email
+FROM gyms AS g,customers AS c;
