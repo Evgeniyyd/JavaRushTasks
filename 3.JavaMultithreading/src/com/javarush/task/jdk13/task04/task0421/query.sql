@@ -1,0 +1,2 @@
+-- Write your code here:
+SELECT  DATE_SUB(CURRENT_TIME, INTERVAL 3 DAY);
