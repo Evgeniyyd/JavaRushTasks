@@ -1,4 +1,4 @@
 -- Write your code here:
-SELECT department, COUNT(position)
+SELECT department, position, COUNT(position)
 FROM employee
-GROUP BY department;
+GROUP BY department,position;

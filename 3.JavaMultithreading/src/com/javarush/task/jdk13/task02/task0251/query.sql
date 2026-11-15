@@ -5,4 +5,4 @@ GROUP BY department, position
 HAVING total = 1
    AND position = 'manager'
 ORDER BY total
-LIMIT 20 OFFSET 1;
+LIMIT 2 OFFSET 1;

@@ -4,5 +4,5 @@ SELECT YEAR(prod_date)  AS 'prod_year',
        COUNT(*)
 FROM cars
 WHERE price > 99000
-  AND name LIKE '%Black Car%'
+  AND name LIKE 'Black Car'
 GROUP BY prod_year, prod_month;

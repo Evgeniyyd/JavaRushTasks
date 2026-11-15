@@ -1,7 +1,6 @@
 -- Write your code here:
 SELECT department, position, COUNT(*) AS 'total'
 FROM employee
-WHERE position LIKE 'backend developer'
 GROUP BY department, position
-HAVING  total =1
+HAVING  total =1 AND position LIKE 'backend developer'
 ORDER BY department;

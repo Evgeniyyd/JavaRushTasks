@@ -1,6 +1,7 @@
 -- Write your code here:
-SELECT  COUNT(1),
-    IF(is_full_time, 'yes','no')
+SELECT students.is_full_time, COUNT(is_full_time)
 FROM students
-GROUP BY IF(is_full_time, 'yes','no');
+WHERE is_full_time = 1
+   OR is_full_time = 0
+GROUP BY is_full_time;
 
