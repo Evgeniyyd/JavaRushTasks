@@ -1,7 +1,8 @@
 -- Write your code here:
-SELECT authors.last_name AS 'author',
-       books.genre AS 'genre',
-       books.date_released AS 'book_genre'
-FROM books
-JOIN authors ON authors.author_id = books.author_id
-WHERE date_released < 1900;
+SELECT auth.last_name author,
+       book.genre book_genre,
+       book.date_released
+FROM authors AS auth
+RIGHT JOIN  books AS book  ON auth.author_id = book.author_id
+WHERE book.date_released < 1900
+GROUP BY book.genre, auth.last_name, book.date_released;

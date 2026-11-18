@@ -4,5 +4,5 @@ SELECT retailer.ret_name,
        supplier.sup_name,
        supplier.sup_revenue
 FROM suppliers AS supplier
-         JOIN top_retailers AS retailer ON ret_revenue = sup_revenue
-WHERE sup_revenue > 50;
+         JOIN top_retailers AS retailer ON retailer.ret_revenue = supplier.sup_revenue
+WHERE supplier.sup_revenue > 50;

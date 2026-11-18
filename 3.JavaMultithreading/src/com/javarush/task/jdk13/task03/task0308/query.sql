@@ -1,6 +1,6 @@
 -- Write your code here:
-SELECT gyms.location AS 'g',
-       customers.name, customers.email, customers.telephone AS 'person'
-FROM customers,
-     gyms
-WHERE customers.name LIKE 'Hulk';
+SELECT g.location ,
+       person.name, person.email, person.telephone
+FROM customers AS person,
+     gyms AS g
+WHERE person.name LIKE 'Hulk';

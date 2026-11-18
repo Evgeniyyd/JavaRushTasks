@@ -6,5 +6,5 @@ FROM films
       FROM film_directors AS director
       WHERE year_born < 1940)
          AS year ON year.id = films.director_id
-WHERE genre = 'sci-fi';
+WHERE films.genre = 'sci-fi';
 

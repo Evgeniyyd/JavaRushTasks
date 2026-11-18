@@ -4,7 +4,7 @@ SELECT authors.last_name AS 'author',
        books.genre       AS 'book_genre'
 FROM books
          LEFT JOIN authors ON authors.author_id = books.author_id
-WHERE genre = 'fantasy'
-GROUP BY last_name, country, genre
-ORDER BY country ASC
+WHERE books.genre = 'fantasy'
+GROUP BY books.genre, authors.country, authors.last_name
+ORDER BY authors.country ASC
 LIMIT 5;

@@ -2,6 +2,5 @@
 SELECT * FROM films
  WHERE title LIKE
           (SELECT title FROM films
-                     WHERE title LIKE 'The%'
-                       AND title LIKE '%r'
+                     WHERE title LIKE 'The%r'
            LIMIT 1);

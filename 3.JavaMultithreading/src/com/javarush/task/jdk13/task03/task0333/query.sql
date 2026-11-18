@@ -4,6 +4,6 @@ SELECT a.sex AS 'author_sex',
        b.copies_sold_millions AS 'books_sold'
 FROM books AS b
 JOIN authors AS a ON a.author_id = b.author_id
-WHERE copies_sold_millions >10
-GROUP BY sex,country,copies_sold_millions
-ORDER BY copies_sold_millions DESC;
+WHERE b.copies_sold_millions >10
+GROUP BY a.sex, a.country, b.copies_sold_millions
+ORDER BY b.copies_sold_millions DESC;
